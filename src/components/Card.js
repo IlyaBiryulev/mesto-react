@@ -15,7 +15,7 @@ function Card({card, onCardClick}) {
                 <h2 className="photo-grid__title photo-grid__title_popup">{card.name}</h2>
                 <div className="photo-grid__like-wrapper">
                     <button className="photo-grid__like" type="button"></button>
-                    <p className="photo-grid__like-counter">{card.length}</p>
+                    <p className="photo-grid__like-counter">{card.likes.length}</p>
                 </div>
             </div>
         </div>
