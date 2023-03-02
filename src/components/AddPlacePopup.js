@@ -11,24 +11,24 @@ function AddPlacePopup({isOpen, onClose}) {
         onClose = {onClose}>
             <input
                 type="text"
-                class="popup__form-edit popup__form-edit_substitution_name popup__form-edit_name"
+                className="popup__form-edit popup__form-edit_substitution_name popup__form-edit_name"
                 name="caption-input"
                 id='caption-input'
                 form="popup-add"
                 required
                 placeholder="Название"
-                minlength="2"
-                maxlength="30"/>
-            <span class="caption-input-error popup__form-error"></span>
+                minLength="2"
+                maxLength="30"/>
+            <span className="caption-input-error popup__form-error"></span>
             <input
                 type="url"
-                class="popup__form-edit popup__form-edit_substitution_about-me popup__form-edit_link"
+                className="popup__form-edit popup__form-edit_substitution_about-me popup__form-edit_link"
                 name="link-input"
                 id='link-input'
                 form="popup-add"
                 required
                 placeholder="Ссылка на картинку"/>
-            <span class="link-input-error popup__form-error"></span>
+            <span className="link-input-error popup__form-error"></span>
         </PopupWithForm>
       </div>
     );
