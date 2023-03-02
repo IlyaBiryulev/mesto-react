@@ -21,8 +21,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     });
   },[])
 
-  console.log(userAvatar)
-
   return (
     <div>
       <main className="content">
