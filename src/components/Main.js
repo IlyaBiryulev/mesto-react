@@ -21,12 +21,18 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     });
   },[])
 
+  console.log(userAvatar)
 
   return (
     <div>
       <main className="content">
         <section className="profile">
-          <button className="profile__avatar-update-button" type="button" onClick = {onEditAvatar} style={{ backgroundImage: `url(${userAvatar})` }}><img src="#" alt="Фотография профиля" className="profile__image"/></button>
+          <button className="profile__avatar-update-button" type="button" onClick = {onEditAvatar}>
+            <img 
+            src={userAvatar} 
+            alt="Фотография профиля" 
+            className="profile__image"/>
+            </button>
           <div className="profile__info">
             <div className="profile__edit-info">
               <h1 className="profile__name">{userName}</h1>
