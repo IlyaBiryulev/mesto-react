@@ -57,7 +57,7 @@ class Api {
     });
   }
 
-  putCardLike(id) {
+  setCardLike(id) {
     const url = this._baseUrl + `/cards/${id}/likes`;
     return fetch(url, {
       method: 'PUT',
@@ -77,6 +77,14 @@ class Api {
     .then(res => {
       return this._getResponce(res)
     });
+  }
+
+  changeLikeCardStatus(id, isLiked) {
+    if(isLiked){
+      return this.setCardLike(id)
+    } else {
+      return this.deleteCardLike(id)
+    }
   }
 
   editProfile(popupInputsValue) {

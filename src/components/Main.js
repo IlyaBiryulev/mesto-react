@@ -11,12 +11,30 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
   React.useEffect(() => {
     Promise.all([api.getInitialCards()])
     .then(([cardData]) => {
+      console.log(cardData)
       setCards(cardData);
     })
     .catch((err) => {
       console.log(err);
     });
   },[])
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    api.changeLikeCardStatus(card._id, !isLiked)
+    .then((newCard) => {
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  } 
+
+  function handleCardDelete(card) {
+    api.deleteCard(card._id)
+    .then((newCard) => {
+      console.log(newCard)
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  } 
 
   return (
     <div>
@@ -39,7 +57,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
         </section>
         <section className="photo-grid">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={onCardClick}/>
+            <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete}/>
           ))}
         </section>
       </main>
