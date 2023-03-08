@@ -23,6 +23,7 @@ function App() {
     "cohort": ''
   });
   const [cards, setCards] = React.useState([]);
+  const [submitButtonState, setSubmitButtonState] = React.useState('')
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
@@ -38,14 +39,17 @@ function App() {
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
+    setSubmitButtonState('Сохранить');
   }
 
   const handleEditProfileClick = () => {
+    setSubmitButtonState('Сохранить');
     setIsEditProfilePopupOpen(true);
   }
 
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
+    setSubmitButtonState('Сохранить');
   }
 
   const handleCardClick = (card) => {
@@ -77,6 +81,7 @@ function App() {
   } 
 
   const handleUpdateUser = (popupInputsValue) => {
+    setSubmitButtonState('Сохранение...')
     api.setUserInfo(popupInputsValue)
     .then((value) => {
       console.log(value)
@@ -85,10 +90,14 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      setSubmitButtonState('Сохранить')
     });
   }
 
   const handleUpdateAvatar = (link) => {
+    setSubmitButtonState('Сохранение...')
     api.setUserAvatar(link)
     .then((value) => {
       console.log(value)
@@ -97,10 +106,14 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => {
+      setSubmitButtonState('Сохранить')
+    }); 
   }
 
   const handleAddPlaceSubmit = (popupInputsValue) => {
+    setSubmitButtonState('Сохранение...')
     api.addCard(popupInputsValue)
     .then((newCard) => {
       setCards([newCard, ...cards]);
@@ -108,6 +121,9 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      setSubmitButtonState('Сохранить')
     });
   }
 
@@ -129,16 +145,19 @@ function App() {
         isOpen = {isEditProfilePopupOpen}
         onClose = {closeAllPopups}
         onUpdateUser = {handleUpdateUser}
+        buttonState = {submitButtonState}
         />
         <EditAvatarPopup 
         isOpen = {isEditAvatarPopupOpen}
         onClose = {closeAllPopups}
         onUpdateAvatar = {handleUpdateAvatar}
+        buttonState = {submitButtonState}
         />
         <AddPlacePopup 
         isOpen = {isAddPlacePopupOpen}
         onClose = {closeAllPopups}
         onAddPlace = {handleAddPlaceSubmit}
+        buttonState = {submitButtonState}
         />
         <ImagePopup 
         card = {selectedCard}

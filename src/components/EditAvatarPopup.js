@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, buttonState}) {
   const avatarRef = React.useRef();
 
   const handleSubmit = (e) => {
@@ -16,7 +16,9 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
       name = "update-avatar"
       isOpen = {isOpen}
       onClose = {onClose}
-      onSubmit = {handleSubmit}>
+      onSubmit = {handleSubmit}
+      buttonState = {buttonState}
+      >
           <input
               type="url"
               className="popup__form-edit popup__form-edit_substitution_name popup__form-edit_udate-link"
