@@ -22,11 +22,14 @@ function App() {
     "_id": '',
     "cohort": ''
   });
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo()])
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then((values) => {
       setCurrentUser(values[0])
+      console.log(values[1])
+      setCards(values[1])
     })
     .catch((err) => {
       console.log(err);
@@ -48,6 +51,23 @@ function App() {
   const handleCardClick = (card) => {
     setSelectedCard(card);
   }
+
+  const handleCardLike = (card) => {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    api.changeLikeCardStatus(card._id, !isLiked)
+    .then((newCard) => {
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  } 
+
+  const handleCardDelete = (card) => {
+    api.deleteCard(card._id)
+    .then((newCard) => {
+      console.log(newCard)
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  } 
 
   const handleUpdateUser = (popupInputsValue) => {
     api.setUserInfo(popupInputsValue)
@@ -89,6 +109,9 @@ function App() {
         onAddPlace = {handleAddPlaceClick}
         onEditAvatar = {handleEditAvatarClick}
         onCardClick = {handleCardClick}
+        onCardLike = {handleCardLike}
+        onCardDelete = {handleCardDelete}
+        cards = {cards}
         />
         <Footer />
         <EditProfilePopup 
