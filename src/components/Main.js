@@ -11,7 +11,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
   React.useEffect(() => {
     Promise.all([api.getInitialCards()])
     .then(([cardData]) => {
-      console.log(cardData)
       setCards(cardData);
     })
     .catch((err) => {

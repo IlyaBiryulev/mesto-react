@@ -87,15 +87,12 @@ class Api {
     }
   }
 
-  editProfile(popupInputsValue) {
+  setUserInfo(popupInputsValue) {
     const url = this._baseUrl + `/users/me`;
     return fetch(url, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({
-        name: `${popupInputsValue.name}`,
-        about: `${popupInputsValue.job}`
-      })
+      body: JSON.stringify(popupInputsValue)
     })
     .then(res => {
       return this._getResponce(res)

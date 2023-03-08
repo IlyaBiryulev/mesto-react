@@ -15,7 +15,13 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState({
+    "name": '',
+    "about": '',
+    "avatar": '',
+    "_id": '',
+    "cohort": ''
+  });
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo()])
@@ -43,6 +49,18 @@ function App() {
     setSelectedCard(card);
   }
 
+  const handleUpdateUser = (popupInputsValue) => {
+    api.setUserInfo(popupInputsValue)
+    .then((value) => {
+      console.log(value)
+      setCurrentUser(value)
+      closeAllPopups()
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   const closeAllPopups = () => {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -64,6 +82,7 @@ function App() {
         <EditProfilePopup 
         isOpen = {isEditProfilePopupOpen}
         onClose = {closeAllPopups}
+        onUpdateUser = {handleUpdateUser}
         />
         <EditAvatarPopup 
         isOpen = {isEditAvatarPopupOpen}
