@@ -61,6 +61,18 @@ function App() {
     });
   }
 
+  const handleUpdateAvatar = (link) => {
+    api.setUserAvatar(link)
+    .then((value) => {
+      console.log(value)
+      setCurrentUser(value)
+      closeAllPopups()
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   const closeAllPopups = () => {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -87,6 +99,7 @@ function App() {
         <EditAvatarPopup 
         isOpen = {isEditAvatarPopupOpen}
         onClose = {closeAllPopups}
+        onUpdateAvatar = {handleUpdateAvatar}
         />
         <AddPlacePopup 
         isOpen = {isAddPlacePopupOpen}

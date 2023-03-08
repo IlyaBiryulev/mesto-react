@@ -99,13 +99,13 @@ class Api {
     });
   }
 
-  updateAvatar(popupInputsValue) {
+  setUserAvatar(link) {
     const url = this._baseUrl + `/users/me/avatar`;
     return fetch(url, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: `${popupInputsValue.avatar}`
+        "avatar": link
       })
     })
     .then(res => {
