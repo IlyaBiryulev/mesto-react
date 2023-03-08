@@ -36,10 +36,7 @@ class Api {
     return fetch(url, {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify({
-        name:  popupInputsValue['caption-input'],
-        link: popupInputsValue['link-input']
-      })
+      body: JSON.stringify(popupInputsValue)
     })
     .then(res => {
       return this._getResponce(res)

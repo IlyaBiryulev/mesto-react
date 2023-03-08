@@ -52,6 +52,13 @@ function App() {
     setSelectedCard(card);
   }
 
+  const closeAllPopups = () => {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setSelectedCard(null);
+  }
+
   const handleCardLike = (card) => {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
@@ -93,11 +100,15 @@ function App() {
     });
   }
 
-  const closeAllPopups = () => {
-    setIsEditAvatarPopupOpen(false);
-    setIsEditProfilePopupOpen(false);
-    setIsAddPlacePopupOpen(false);
-    setSelectedCard(null);
+  const handleAddPlaceSubmit = (popupInputsValue) => {
+    api.addCard(popupInputsValue)
+    .then((newCard) => {
+      setCards([newCard, ...cards]);
+      closeAllPopups()
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   return (
@@ -127,6 +138,7 @@ function App() {
         <AddPlacePopup 
         isOpen = {isAddPlacePopupOpen}
         onClose = {closeAllPopups}
+        onAddPlace = {handleAddPlaceSubmit}
         />
         <ImagePopup 
         card = {selectedCard}
