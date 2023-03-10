@@ -8,19 +8,19 @@ function Card({card, onCardClick, onCardLike, onCardDelete}) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     const cardLikeButtonClassName = ( 
-        `photo-grid__like ${isLiked && 'photo-grid__like_active'}` 
-    );;
+      `photo-grid__like ${isLiked && 'photo-grid__like_active'}` 
+    );
 
     function handleClick() {
-      onCardClick(card)
+      onCardClick(card);
     }
 
     function handleLikeClick() {
-      onCardLike(card)
+      onCardLike(card);
     }
 
     function handleDeleteClick() {
-        onCardDelete(card)
+        onCardDelete(card);
       }
 
     return (

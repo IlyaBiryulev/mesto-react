@@ -84,7 +84,6 @@ function App() {
     setSubmitButtonState('Сохранение...')
     api.setUserInfo(popupInputsValue)
     .then((value) => {
-      console.log(value)
       setCurrentUser(value)
       closeAllPopups()
     })
