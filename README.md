@@ -30,7 +30,7 @@
   <li>Клонирование репозитория</li>
 
   ```
-  git clone https://github.com/IlyaBiryulev/mesto.git
+  git clone https://github.com/IlyaBiryulev/mesto-react.git
   ```
 
   <li>Запуск проекта на локальном сервере</li>
