@@ -6,6 +6,10 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike,
 
   const currentUser = React.useContext(CurrentUserContext);
 
+  const CardElement = cards.map((card) => (
+    <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
+  ))
+
   return (
     <div>
       <main className="content">
@@ -26,9 +30,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike,
           <button className="profile__add-button" type="button" onClick = {onAddPlace}></button>
         </section>
         <section className="photo-grid">
-          {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
-          ))}
+          {CardElement}
         </section>
       </main>
     </div>
