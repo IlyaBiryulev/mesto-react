@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup({isOpen, onClose, onAddPlace, buttonState}) {
+function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
   const [name, setName] = React.useState('');
   const [link, setLink] = React.useState('');
 
@@ -12,6 +12,11 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, buttonState}) {
   const handleLinkChange = (e) => {
     setLink(e.target.value)
  }
+
+ React.useEffect(() => {
+  setName('');
+  setLink('');
+}, [isOpen]); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +31,7 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, buttonState}) {
       isOpen = {isOpen}
       onClose = {onClose}
       onSubmit = {handleSubmit}
-      buttonState = {buttonState}
+      buttonState = {isLoading ? 'Сохранение...' : 'Сохранить'}
       >
           <input
               type="text"

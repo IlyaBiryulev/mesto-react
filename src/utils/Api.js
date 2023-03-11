@@ -4,7 +4,7 @@ class Api {
     this._headers = headers;
   }
 
-  _getResponce(res) {
+  _getResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -17,7 +17,7 @@ class Api {
       headers: this._headers
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 
@@ -27,7 +27,7 @@ class Api {
     headers: this._headers
   })
     .then(res => {
-      return this._getResponce(res);
+      return this._getResponse(res);
     });
   }
 
@@ -39,7 +39,7 @@ class Api {
       body: JSON.stringify(popupInputsValue)
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 
@@ -50,7 +50,7 @@ class Api {
       headers: this._headers
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 
@@ -61,7 +61,7 @@ class Api {
       headers: this._headers
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 
@@ -72,7 +72,7 @@ class Api {
       headers: this._headers
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 
@@ -92,7 +92,7 @@ class Api {
       body: JSON.stringify(popupInputsValue)
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 
@@ -106,7 +106,7 @@ class Api {
       })
     })
     .then(res => {
-      return this._getResponce(res)
+      return this._getResponse(res)
     });
   }
 

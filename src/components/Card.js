@@ -26,7 +26,7 @@ function Card({card, onCardClick, onCardLike, onCardDelete}) {
     return (
     <div>
         <div className="photo-grid__item">
-            <img src={card.link} alt="изображение" className="photo-grid__image photo-grid__image_popup" onClick = {handleClick}/>
+            <img src={card.link} alt={card.name} className="photo-grid__image photo-grid__image_popup" onClick = {handleClick}/>
             {isOwn && <button className="photo-grid__delete-btn" type="button" onClick={handleDeleteClick}></button>}
             <div className="photo-grid__caption">
                 <h2 className="photo-grid__title photo-grid__title_popup">{card.name}</h2>
